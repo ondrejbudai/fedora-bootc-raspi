@@ -32,8 +32,8 @@ sudo podman run \
    localhost/fedora-bootc-raspi:40
 # arm-image-installer can deal only deal with xz archives, let's deal with that
 xz -v -0 -T0 output/raw/disk.raw
-# substitute /dev/sda with your root disk
-sudo arm-image-installer --target=rpi4 --media=/dev/sda --image output/raw/disk.raw.xz --resizefs
+# substitute $DISK with the location of Raspberry Pi disk
+sudo arm-image-installer --target=rpi4 --media=$DISK --image output/raw/disk.raw.xz --resizefs
 ```
 
 If you want a user inside the image, add `-v $(pwd)/config.toml:/config.toml` to `podman-run` and create the following blueprint in `config.toml`:
